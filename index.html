@@ -31,7 +31,7 @@
             </li>
           </ul>
           <!-- <div></div> -->
-          <button :class="['btn', {'primary': activeIndex > 0}]" @click="prev">Назад
+          <button :class="['btn', {'primary': activeIndex > 0}, ]" @click="prev" :disabled="iSDisbledBAck">Назад
           </button>
 
           <button v-show=" activeIndex < steps.length-1 " :class="['btn',  {'primary': activeIndex < steps.length-1 }]"

@@ -7,6 +7,7 @@ const App = {
     return {
       activeIndex: 0, // то, что позволяет определить текущий активный шаг
       isEnd: false,
+      iSDisbledBAck: true,
       steps: [{
         title: 'Основы',
         text: 'В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.',
@@ -43,6 +44,7 @@ const App = {
   methods: {
     init() {
       this.activeIndex = 0
+      this.iSDisbledBAck = true
       this.isEnd = false
       for (let i = 0; i < this.steps.length; i++) {
         this.steps[i].isActive = false
@@ -62,6 +64,7 @@ const App = {
         this.steps[this.activeIndex].isActive = true
       } else {
         this.activeIndex = 0
+        this.iSDisbledBAck = true
         console.log(' мы в начале пути', this.activeIndex)
       }
     },
@@ -77,7 +80,7 @@ const App = {
       // кнопка вперед или закончить  - если  последний шаг активен то кнопка вреред меняется на законцить
       // после нажатия на закончить - меняется на кнопку начать заново
       // после нажатия начть заново  устананвливается на первый шаг - активно  и появляются кнопки назад и вперед - 
-
+      this.iSDisbledBAck = false
       if (this.activeIndex < this.steps.length - 1) {
         let n = this.activeIndex
         this.steps[n].classDone = true
@@ -93,7 +96,7 @@ const App = {
       // когда нажимаем на определенный шаг
       // установить класс active - все предыдушие - класс done
       // на первом шаге кнопка назад неактивна
-
+      this.iSDisbledBAck = false
       this.steps[this.activeIndex].classDone = true
       this.steps[this.activeIndex].isActive = false
 
