@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Основы Vue</title>
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Основы Vue</title>
-  <link rel="stylesheet" href="theme.css" />
-</head>
-<style>
-  [v-cloak] {
-    display: none;
-  }
-</style>
+  <body>
+    <div class="container" id="app" v-cloak>
+      <div class="card">
+        <h1>План по изучению Vue.js</h1>
+        <div v-if="isEnd !== true">
+          <div class="steps">
+            <div class="steps-content">
+              <!-- Сюда необходимо вывести текст активного шага по его индексу -->
+              {{steps[activeIndex].text}}
+              <hr />
+            </div>
+            <ul class="steps-list">
+              <li
+                :class="['steps-item', { done:step.classDone}, {'active':step.isActive}]"
+                v-for="(step, idx) in steps"
+                :key="step"
+                @click="setActive(idx)"
+              >
+                <span>{{ idx + 1}} </span> {{step.title}}
+              </li>
+            </ul>
+            <!-- <div></div> -->
+            <button
+              :class="['btn', {'primary': activeIndex > 0}, ]"
+              @click="prev"
+              :disabled="iSDisbledBAck"
+            >
+              Назад
+            </button>
 
-<body>
-  <div class="container" id="app" v-cloak>
-    <div class="card">
-      <h1>План по изучению Vue.js</h1>
-      <div v-if="isEnd !== true">
-        <div class="steps">
-          <div class="steps-content">
-            <!-- Сюда необходимо вывести текст активного шага по его индексу -->
-            {{steps[activeIndex].text}}
-            <hr />
+            <button
+              v-show=" activeIndex < steps.length-1 "
+              :class="['btn',  {'primary': activeIndex < steps.length-1 }]"
+              @click="nextOfFinish"
+            >
+              Вперед
+            </button>
+
+            <button
+              v-show="activeIndex === steps.length-1 "
+              class="btn primary"
+              @click="isEnd = true"
+            >
+              Закончить
+            </button>
           </div>
-          <ul class="steps-list">
-            <li :class="['steps-item', { done:step.classDone}, {'active':step.isActive}]" v-for="(step, idx) in steps"
-              :key="step" @click="setActive(idx)">
-              <span>{{ idx + 1}} </span> {{step.title}}
-            </li>
-          </ul>
-          <!-- <div></div> -->
-          <button :class="['btn', {'primary': activeIndex > 0}, ]" @click="prev" :disabled="iSDisbledBAck">Назад
-          </button>
-
-          <button v-show=" activeIndex < steps.length-1 " :class="['btn',  {'primary': activeIndex < steps.length-1 }]"
-            @click="nextOfFinish">
-            Вперед</button>
-
-          <button v-show="activeIndex === steps.length-1 " class="btn primary" @click="isEnd = true">
-            Закончить</button>
+        </div>
+        <div v-else>
+          <button class="btn primary" @click="reset">Начать заново</button>
         </div>
       </div>
-      <div v-else>
-        <button class="btn primary" @click="reset">Начать заново</button>
-      </div>
     </div>
-  </div>
 
-
-
-  <script src="https://unpkg.com/vue@next"></script>
-  <script src="vue.js"></script>
-</body>
-
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="vue.js"></script>
+  </body>
 </html>
