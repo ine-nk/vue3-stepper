@@ -8,8 +8,6 @@ const App = {
       activeIndex: 0, // то, что позволяет определить текущий активный шаг
       isEnd: false,
       iSDisbledBAck: true,
-      // classDone: false,
-      // isActive: false,
       buttonName: 'Вперед',
       steps: [
         {
@@ -41,16 +39,7 @@ const App = {
     };
   },
   methods: {
-    // init() {
-    // this.activeIndex = 0;
-    // this.iSDisbledBack = true;
-    // this.isEnd = false;
-    // for (let i = 0; i < this.steps.length; i++) {
-    //   this.steps[i].isActive = false;
-    //   this.steps[i].classDone = false;
-    // }
-    // this.steps[this.activeIndex].isActive = true;
-    // },
+
     prev() {
       // когда нажимаем кнопку назад
       //  тот эл-т на котором были установить класс done
@@ -78,6 +67,9 @@ const App = {
       this.iSDisbledBAck = false;
       if (this.activeIndex < this.steps.length - 1) {
         this.activeIndex++;
+      } else if (this.activeIndex === this.steps.length - 1) {
+        this.isEnd = true
+        
       }
     },
     setActive(idx) {
@@ -100,12 +92,28 @@ const App = {
       return !this.activeIndex
     },
     // 3. находимся ли мы на последнем шаге
-    isEndBtn() {
-      return this.activeIndex = this.steps.length - 1 ?
-        this.buttonName = 'Закончить' :
-        this.buttonName = 'Вперед'
-    }
+    lastBtnName() {
+      if (this.activeIndex < this.steps.length - 1) {
+        console.log('вперед');
+        return this.buttonName = 'Вперед'
+      } else if (this.activeIndex === this.steps.length - 1) {
+        console.log('Закончить');
+        return this.buttonName = 'Закончить'
+      }
+
+    },
+    // isNotLastStep(){
+    //   if(){
+
+    //   } else {
+
+    //   }
+    //   return this.activeIndex < this.steps.length-1
+    // }
+
+
   }
+
 
 };
 

@@ -35,14 +35,13 @@
             Назад
           </button>
 
-          <button v-show=" activeIndex < steps.length-1 " :class="['btn',  {'primary': activeIndex < steps.length-1 }]"
-            @click="nextOfFinish">
+          <button  class="btn primary" @click="nextOfFinish">
             {{ buttonName }}
           </button>
 
-          <button v-show="activeIndex === steps.length-1 " class="btn primary" @click="isEnd = true">
+          <!-- <button v-show="activeIndex === steps.length-1 " class="btn primary" @click="isEnd = true">
             Закончить
-          </button>
+          </button> -->
         </div>
       </div>
       <div v-else>
