@@ -69,7 +69,7 @@ const App = {
         this.activeIndex++;
       } else if (this.activeIndex === this.steps.length - 1) {
         this.isEnd = true
-        
+
       }
     },
     setActive(idx) {
@@ -79,6 +79,9 @@ const App = {
       this.activeIndex = idx;
       this.iSDisbledBAck = false;
     },
+    isActive(idx) {
+      return idx ===  this.activeIndex ? true  : false
+    }
   },
   computed: {
     // тут стоит определить несколько свойств:
@@ -92,27 +95,15 @@ const App = {
       return !this.activeIndex
     },
     // 3. находимся ли мы на последнем шаге
-    lastBtnName() {
+    btnName() {
       if (this.activeIndex < this.steps.length - 1) {
-        console.log('вперед');
-        return this.buttonName = 'Вперед'
+        return 'Вперед'
       } else if (this.activeIndex === this.steps.length - 1) {
-        console.log('Закончить');
-        return this.buttonName = 'Закончить'
+        return 'Закончить'
       }
-
     },
-    // isNotLastStep(){
-    //   if(){
-
-    //   } else {
-
-    //   }
-    //   return this.activeIndex < this.steps.length-1
-    // }
-
-
-  }
+   
+  },
 
 
 };
