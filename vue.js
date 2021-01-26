@@ -80,7 +80,7 @@ const App = {
       this.iSDisbledBAck = false;
     },
     isActive(idx) {
-      return idx ===  this.activeIndex ? true  : false
+      return idx < this.activeIndex ? false : true
     }
   },
   computed: {
@@ -102,10 +102,7 @@ const App = {
         return 'Закончить'
       }
     },
-   
   },
-
-
 };
 
 Vue.createApp(App).mount("#app");

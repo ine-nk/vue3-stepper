@@ -25,10 +25,10 @@
             <hr />
           </div>
           <ul class="steps-list">
-            <li :class="['steps-item',  {'active' : isActive(idx) , 'done' : !isActive(idx) }]" v-for="(step, idx) in steps"
-              :key="step" @click="setActive(idx)">
-              <span>{{ idx + 1}} </span> {{step.title}}
-            </li>
+            <li :class="['steps-item', { done:idx < activeIndex}, {'active': idx === activeIndex}]"
+            v-for="(step, idx) in steps" :key="step" @click="setActive(idx)">
+            <span>{{ idx + 1}} </span> {{step.title}}
+          </li>
           </ul>
           <button :class="['btn', {'primary': activeIndex > 0}, ]" @click="prev" :disabled="iSDisbledBack">
             Назад
@@ -56,3 +56,10 @@
               v-for="(step, idx) in steps" :key="step" @click="setActive(idx)">
               <span>{{ idx + 1}} </span> {{step.title}}
             </li> -->
+
+
+
+            <!-- <li :class="['steps-item',  {'active' : isActive(idx) , 'done' : !isActive(idx) }]" v-for="(step, idx) in steps"
+            :key="step" @click="setActive(idx)">
+            <span>{{ idx + 1}} </span> {{step.title}}
+          </li> -->
