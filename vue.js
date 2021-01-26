@@ -48,8 +48,6 @@ const App = {
         this.activeIndex--
       } else {
         this.activeIndex = 0
-        this.iSDisbledBAck = true;
-        console.log(" мы в начале пути", this.activeIndex)
       }
     },
 
@@ -64,25 +62,21 @@ const App = {
       // кнопка вперед или закончить  - если  последний шаг активен то кнопка вреред меняется на законцить
       // после нажатия на закончить - меняется на кнопку начать заново
       // после нажатия начть заново  устананвливается на первый шаг - активно  и появляются кнопки назад и вперед -
-      this.iSDisbledBAck = false;
       if (this.activeIndex < this.steps.length - 1) {
         this.activeIndex++;
       } else if (this.activeIndex === this.steps.length - 1) {
         this.isEnd = true
-
       }
     },
+
     setActive(idx) {
       // когда нажимаем на определенный шаг
       // установить класс active - все предыдушие - класс done
       // на первом шаге кнопка назад неактивна
       this.activeIndex = idx;
-      this.iSDisbledBAck = false;
-    },
-    isActive(idx) {
-      return idx < this.activeIndex ? false : true
     }
   },
+
   computed: {
     // тут стоит определить несколько свойств:
     // 1. текущий выбранный шаг
@@ -101,8 +95,8 @@ const App = {
       } else if (this.activeIndex === this.steps.length - 1) {
         return 'Закончить'
       }
-    },
-  },
+    }
+  }
 };
 
 Vue.createApp(App).mount("#app");
