@@ -7,7 +7,7 @@ const App = {
     return {
       activeIndex: 0, // то, что позволяет определить текущий активный шаг
       isEnd: false,
-      iSDisbledBAck: true,
+//       iSDisbledBAck: true,
       buttonName: 'Вперед',
       steps: [
         {
